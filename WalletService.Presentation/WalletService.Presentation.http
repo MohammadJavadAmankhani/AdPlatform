@@ -1,0 +1,6 @@
+@WalletService.Presentation_HostAddress = http://localhost:5037
+
+GET {{WalletService.Presentation_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
