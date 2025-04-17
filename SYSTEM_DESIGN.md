@@ -49,12 +49,23 @@ A microservices-based system for managing wallets, ads, and ad delivery, optimiz
 
 
 
-[Client] --> [API Gateway]
-                    |
-    ----------------------------------
-    |                |               |
-[Wallet Service] [Ad Management] [Ad Delivery]
-    |                |               |
-    |----[Event Bus (RabbitMQ)]-----|
-    |                               |
-[Database (Cosmos DB)]       [Reporting Service]
++----------------+       +-----------------+
+|    Client      | ----> |   API Gateway   |
++----------------+       +-----------------+
+                           |
+                           |
+        +------------------+------------------+
+        |                  |                  |
+        v                  v                  v
++----------------+  +----------------+  +----------------+
+| Wallet Service |  | Ad Management |  | Ad Delivery    |
++----------------+  +----------------+  +----------------+
+        |                  |                  |
+        |                  |                  |
+        +--------[ Event Bus (RabbitMQ) ]----+
+        |                                     |
+        v                                     v
++----------------+                    +----------------+
+| Database       |                    | Reporting      |
+| (Cosmos DB)    |                    | Service        |
++----------------+                    +----------------+
